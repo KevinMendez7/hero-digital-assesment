@@ -3,7 +3,7 @@ import { CustomHeader, Title, Paragraph } from "./styles/Header.styles";
 const Header = _ => {
     return (
         <CustomHeader>          
-            <Title>HERO ASSESMENT</Title>
+            <Title>HERO ASSESSMENT</Title>
             <Paragraph>Welcome</Paragraph>
           </CustomHeader>
     );
