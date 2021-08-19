@@ -1,7 +1,7 @@
 import { shallow, mount } from 'enzyme';
 import 'jest-styled-components';
-import GlobalWrapper from '../GlobalWrapper';
-import { Global } from '../styles/GlobalWrapper.styles';
+import GlobalWrapper from 'pages/home/components/GlobalWrapper';
+import { Global } from 'pages/home/components/styles/GlobalWrapper.styles';
 
 describe('GlobalWrapper', () => {
     const component = shallow(<GlobalWrapper />);

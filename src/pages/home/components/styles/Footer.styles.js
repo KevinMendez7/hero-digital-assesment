@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { specificSize } from '../../../../utils/devicesSizeValidation';
+import { specificSize } from 'utils/devicesSizeValidation';
 
 export const CustomFooter = styled.footer`    
     margin-top: 20px;

@@ -1,4 +1,4 @@
-import { CustomHeader, Title, Paragraph } from "./styles/Header.styles";
+import { CustomHeader, Title, Paragraph } from "pages/home/components/styles/Header.styles";
 
 const Header = _ => {
     return (

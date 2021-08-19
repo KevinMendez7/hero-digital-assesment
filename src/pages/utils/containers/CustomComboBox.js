@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import OutsideUtil from './OutsideUtil';
-import { Span, SelectedItem, ComboBoxContainer, OptionsContainer, ItemContainer, Arrow, ItemText } from '../components/styles/CustomComboBox.styles';
+import OutsideUtil from 'pages/utils/containers/OutsideUtil';
+import { Span, SelectedItem, ComboBoxContainer, OptionsContainer, ItemContainer, Arrow, ItemText } from 'pages/utils/components/styles/CustomComboBox.styles';
 
 const CustomComboBox = ({ select, selected, children, valid }) => {
 

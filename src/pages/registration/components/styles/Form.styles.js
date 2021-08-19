@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { specificSize } from '../../../../utils/devicesSizeValidation';
+import { specificSize } from 'utils/devicesSizeValidation';
 
 const redColor = 'rgb(225 131 149)';
 

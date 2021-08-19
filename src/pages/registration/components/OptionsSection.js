@@ -1,5 +1,5 @@
-import CustomCheck from '../../utils/containers/CustomCheck';
-import { CheckLabel, CheckLabelWrap, ErrorLabel, OptionsContainer } from '../components/styles/Form.styles';
+import CustomCheck from 'pages/utils/containers/CustomCheck';
+import { CheckLabel, CheckLabelWrap, ErrorLabel, OptionsContainer } from 'pages/registration/components/styles/Form.styles';
 
 const OptionsSection = props => {
     return (

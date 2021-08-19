@@ -1,8 +1,8 @@
 import { mount } from 'enzyme';
 import 'jest-styled-components';
-import { specificSize } from '../../../../utils/devicesSizeValidation';
-import Header from '../Header';
-import { CustomHeader, Paragraph, Title } from '../styles/Header.styles';
+import { specificSize } from 'utils/devicesSizeValidation';
+import Header from 'pages/home/components/Header';
+import { CustomHeader, Paragraph, Title } from 'pages/home/components/styles/Header.styles';
 
 describe('Header', () => {
     const component = mount(<Header />);

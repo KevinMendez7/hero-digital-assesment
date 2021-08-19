@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckContainer, CheckSvg } from '../components/styles/CustomCheck.styles';
+import { CheckContainer, CheckSvg } from 'pages/utils/components/styles/CustomCheck.styles';
  
 const CustomCheck = ({ onChange, value }) => (
   <CheckContainer onClick={onChange} isActive={value}>

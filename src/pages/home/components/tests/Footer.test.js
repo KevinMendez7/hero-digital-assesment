@@ -1,8 +1,8 @@
 import { mount } from 'enzyme';
 import 'jest-styled-components';
-import { specificSize } from '../../../../utils/devicesSizeValidation';
-import Footer from '../Footer';
-import { CustomFooter, Paragraph } from '../styles/Footer.styles';
+import { specificSize } from 'utils/devicesSizeValidation';
+import Footer from 'pages/home/components/Footer';
+import { CustomFooter, Paragraph } from 'pages/home/components/styles/Footer.styles';
 
 describe('Footer', () => {
     const component = mount(<Footer />);

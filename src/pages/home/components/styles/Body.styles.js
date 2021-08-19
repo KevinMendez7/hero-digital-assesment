@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { device, specificSize } from '../../../../utils/devicesSizeValidation';
-import Background from '../../../../assets/texture.png';
+import { device, specificSize } from 'utils/devicesSizeValidation';
+import Background from 'assets/texture.png';
 
 export const BodyContainer = styled.div`  
   display: flex;

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
-import { specificSize } from '../../../../utils/devicesSizeValidation';
+import { specificSize } from 'utils/devicesSizeValidation';
 
 export const Container = styled.div`
     background: rgb(68 79 129 / 48%);

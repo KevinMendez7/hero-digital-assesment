@@ -1,4 +1,4 @@
-import { BoxWrapper, Button, Container, ErrorLabel } from "./styles/NotFoundPage.styles";
+import { BoxWrapper, Button, Container, ErrorLabel } from "pages/error/components/styles/NotFoundPage.styles";
 
 
 const NotFoundPage = () => {

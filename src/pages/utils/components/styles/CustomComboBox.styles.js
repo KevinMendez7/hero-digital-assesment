@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ReactComponent as ArrowImg } from '../../../../assets/text-expand-arrow.svg';
-import { device, specificSize } from '../../../../utils/devicesSizeValidation';
+import { ReactComponent as ArrowImg } from 'assets/text-expand-arrow.svg';
+import { device, specificSize } from 'utils/devicesSizeValidation';
 
 const redColor = 'rgb(225 131 149)';
 const whiteColor = 'rgb(255 255 255)';

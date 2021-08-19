@@ -1,10 +1,10 @@
 import { mount, shallow } from 'enzyme';
 import 'jest-styled-components';
-import { specificSize } from '../../../../utils/devicesSizeValidation';
-import { ItemLabel } from '../../../utils/components/styles/CustomComboBox.styles';
-import CustomComboBox from '../../../utils/containers/CustomComboBox';
-import InputSection from '../InputSection';
-import { ErrorLabel, Input, InputLabelWrap, Label, NestedContainer } from '../styles/Form.styles';
+import { specificSize } from 'utils/devicesSizeValidation';
+import { ItemLabel } from 'pages/utils/components/styles/CustomComboBox.styles';
+import CustomComboBox from 'pages/utils/containers/CustomComboBox';
+import InputSection from 'pages/registration/components/InputSection';
+import { ErrorLabel, Input, InputLabelWrap, Label, NestedContainer } from 'pages/registration/components/styles/Form.styles';
 
 describe('InputSection with initial state', () => {
 

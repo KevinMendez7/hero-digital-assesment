@@ -1,11 +1,11 @@
 import { mount } from 'enzyme';
 import 'jest-styled-components';
 import { BrowserRouter } from 'react-router-dom';
-import Form from '../../../registration/containers/Form';
-import Body from '../../components/Body';
-import Header from '../../components/Header';
-import { Container } from '../../components/styles/Home.styles';
-import Home from '../Home';
+import Form from 'pages/registration/containers/Form';
+import Body from 'pages/registration/components/Body';
+import Header from 'pages/registration/components/Header';
+import { Container } from 'pages/registration/components/styles/Home.styles';
+import Home from 'pages/home/containers/Home';
 
 describe('Home', () => {
     const component = mount(

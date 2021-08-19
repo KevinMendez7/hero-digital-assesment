@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import 'jest-styled-components';
-import NotFoundPage from '../NotFoundPage';
-import { BoxWrapper, Button, Container, ErrorLabel } from '../styles/NotFoundPage.styles';
+import NotFoundPage from 'pages/error/components/NotFoundPage';
+import { BoxWrapper, Button, Container, ErrorLabel } from 'pages/error/components/styles/NotFoundPage.styles';
 import { BrowserRouter } from 'react-router-dom';
-import { specificSize } from '../../../../utils/devicesSizeValidation';
+import { specificSize } from 'utils/devicesSizeValidation';
 
 describe('Shallow <NotFound />', () => {
 

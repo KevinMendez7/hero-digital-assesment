@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import { signUp } from '../../../utils/api';
-import InputSection from '../../registration/components/InputSection';
-import OptionsSection from '../../registration/components/OptionsSection';
-import { FormContainer, Title, Paragraph, ResetButton, ButtonsContainer, SubmitButton} from '../components/styles/Form.styles';
+import { signUp } from 'utils/api';
+import InputSection from 'pages/registration/components/InputSection';
+import OptionsSection from 'pages/registration/components/OptionsSection';
+import { FormContainer, Title, Paragraph, ResetButton, ButtonsContainer, SubmitButton} from 'pages/registration/components/styles/Form.styles';
 
 
 const Form = props => {
@@ -27,11 +27,7 @@ const Form = props => {
 
   const [ formValues, setFormValues ] = useState({ ..._initialState });   
 
-  const resetForm = () => {        
-    setFormValues({           
-      ..._initialState      
-    });         
-  }
+  const resetForm = () => setFormValues({ ..._initialState });         
 
   const setSelectedValue = e => {        
     setFormValues(prevFormValues => ({  
@@ -52,16 +48,16 @@ const Form = props => {
   const activeAlerts = _ => {    
     setFormValues(prevFormValues => ({  
       ...prevFormValues, 
-      alerts: !formValues.alerts,
-      someFeatureActive: `${formValues.alerts ? false : undefined}`
+      alerts: !prevFormValues.alerts,
+      someFeatureActive: `${prevFormValues.alerts ? false : undefined}`
     }));
   }
 
   const activeOtherCommunication = _ => {
     setFormValues(prevFormValues => ({  
       ...prevFormValues, 
-      otherCommunication: !formValues.otherCommunication,
-      someFeatureActive: `${formValues.otherCommunication ? false : undefined}`
+      otherCommunication: !prevFormValues.otherCommunication,
+      someFeatureActive: `${prevFormValues.otherCommunication ? false : undefined}`
     }));
   }
 

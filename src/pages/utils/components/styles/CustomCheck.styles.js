@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ReactComponent as Check } from '../../../../assets/check.svg';
-import { specificSize } from '../../../../utils/devicesSizeValidation';
+import { ReactComponent as Check } from 'assets/check.svg';
+import { specificSize } from 'utils/devicesSizeValidation';
 
 const purpleColor = 'rgb(128 48 147)';
 const skyBlueColor = 'rgb(80 190 188 / 33%)';

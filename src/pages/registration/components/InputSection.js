@@ -1,7 +1,7 @@
 import React from 'react';
-import CustomComboBox from '../../utils/containers/CustomComboBox';
-import { ErrorLabel, Input, InputLabelWrap, Label, NestedContainer } from '../components/styles/Form.styles';
-import { ItemLabel } from '../../utils/components/styles/CustomComboBox.styles';
+import CustomComboBox from 'pages/utils/containers/CustomComboBox';
+import { ErrorLabel, Input, InputLabelWrap, Label, NestedContainer } from 'pages/registration/components/styles/Form.styles';
+import { ItemLabel } from 'pages/utils/components/styles/CustomComboBox.styles';
 
 const InputSection = props => (
   <NestedContainer>

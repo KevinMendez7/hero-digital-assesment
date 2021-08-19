@@ -1,4 +1,4 @@
-import { CustomFooter, Paragraph } from "./styles/Footer.styles";
+import { CustomFooter, Paragraph } from "pages/home/components/styles/Footer.styles";
 
 const Footer = _ => {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
-import { BoxWrapper, Button, Container, ErrorLabel } from './styles/SignUpResponse.styles';
+import { BoxWrapper, Button, Container, ErrorLabel } from 'pages/registration/components/styles/SignUpResponse.styles';
 
 const SignUpSuccessfully = props => {              
   if(!props?.location?.state?.message) {

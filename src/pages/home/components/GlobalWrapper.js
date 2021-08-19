@@ -1,4 +1,4 @@
-import { Global } from "./styles/GlobalWrapper.styles";
+import { Global } from "pages/home/components/styles/GlobalWrapper.styles";
 
 const GlobalWrapper = ({ children }) => {
     return (

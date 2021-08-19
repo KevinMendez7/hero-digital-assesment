@@ -1,9 +1,9 @@
 import { mount } from 'enzyme';
 import 'jest-styled-components';
-import Body from '../Body';
-import { BodyContainer } from '../styles/Body.styles';
-import Background from '../../../../assets/texture.png';
-import { device, specificSize } from '../../../../utils/devicesSizeValidation';
+import Body from 'pages/home/components/Body';
+import { BodyContainer } from 'pages/home/components/styles/Body.styles';
+import Background from 'assets/texture.png';
+import { device, specificSize } from 'utils/devicesSizeValidation';
 
 describe('Body', () => {
 
