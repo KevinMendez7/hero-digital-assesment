@@ -133,6 +133,7 @@ export const ButtonsContainer = styled.div`
 
 export const SubmitButton = styled.button`
   border: none;
+  cursor: pointer;
   border-radius: 25px;
   background: rgb(128 48 147);
   color: rgb(255 255 255);
@@ -154,6 +155,7 @@ export const SubmitButton = styled.button`
 export const ResetButton = styled.button`
   border: rgb(109 130 148 / 50%) 1px solid;
   border-radius: 25px;
+  cursor: pointer;
   background: rgb(255 255 255);
   color: rgb(0 0 0);
   font-size: 0.8em;

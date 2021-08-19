@@ -2,24 +2,23 @@ import React from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import { BoxWrapper, Button, Container, ErrorLabel } from './styles/SignUpResponse.styles';
 
-class SignUpSuccessfully extends React.Component {          
+const SignUpSuccessfully = props => {              
+  if(!props?.location?.state?.message) {
+    return <Redirect to="/" />
+  }
     
-    render() {
-        if(!this.props?.location?.state?.message) {
-            return <Redirect to="/" />
-        }
-        return (
-            <>          
-                <Container>
-                    <BoxWrapper>
-                        <h1>{this.props.location.state.message}</h1>
-                        <ErrorLabel>{this.props.location.state.reason}</ErrorLabel>
-                        <Button to='/'>Return to Home</Button>
-                    </BoxWrapper>
-                </Container>      
-            </>
-        );
-    }
+  return (
+    <>          
+      <Container>
+        <BoxWrapper>
+          <h1>{props.location.state.message}</h1>
+          <ErrorLabel>{props.location.state.reason}</ErrorLabel>
+          <Button to='/'>Return to Home</Button>
+        </BoxWrapper>
+      </Container>      
+    </>
+  );
+    
 };
 
 export default withRouter(SignUpSuccessfully);

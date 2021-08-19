@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckContainer, CheckSvg } from '../components/styles/CustomCheck.styles';
  
-const CustomCheck = ({ onChange, value }) =>(
+const CustomCheck = ({ onChange, value }) => (
   <CheckContainer onClick={onChange} isActive={value}>
     {
       value
@@ -9,6 +9,6 @@ const CustomCheck = ({ onChange, value }) =>(
       : <></>
     }
   </CheckContainer>
-)        
+);
 
 export default React.memo(CustomCheck);

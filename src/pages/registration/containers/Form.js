@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { signUp } from '../../../utils/api';
 import InputSection from '../../registration/components/InputSection';
@@ -6,13 +6,10 @@ import OptionsSection from '../../registration/components/OptionsSection';
 import { FormContainer, Title, Paragraph, ResetButton, ButtonsContainer, SubmitButton} from '../components/styles/Form.styles';
 
 
-class Form extends React.Component {
+const Form = props => {
 
-  constructor() {
-    super();
-
-    this.initialState = {      
-      firstName: '',
+  const _initialState = {
+    firstName: '',
       validFirstname: undefined,
       lastname: '',
       validLastname: undefined,
@@ -26,112 +23,104 @@ class Form extends React.Component {
       someFeatureActive: undefined,
       selectedValue: '- SELECT ONE -',
       isSelectedValue: undefined
-    };
-    
-    this.state = {
-      ...this.initialState,
-      form: null
-    };
+  };
 
-    this.activeAdvances = this.activeAdvances.bind(this);
-    this.activeAlerts = this.activeAlerts.bind(this);
-    this.activeOtherCommunication = this.activeOtherCommunication.bind(this);
-    this.onFirstNameChange = this.onFirstNameChange.bind(this);
-    this.onLastnameChange = this.onLastnameChange.bind(this);
-    this.onEmailChange = this.onEmailChange.bind(this);
-    this.onOrganizationChange = this.onOrganizationChange.bind(this);
-    this.resetForm = this.resetForm.bind(this);
-    this.submit = this.submit.bind(this);
-    this.validate = this.validate.bind(this);
-    this.validateFirstInvalidSubmit = this.validateFirstInvalidSubmit.bind(this);
-    this.setSelectedValue = this.setSelectedValue.bind(this);
+  const [ formValues, setFormValues ] = useState({ ..._initialState, form : null }); 
+  
+  useEffect(() => {    
+    setFormValues({...formValues, form: document.getElementById('form') });    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);  
+
+  const resetForm = _ => {
+    formValues.form.reset();    
+    setFormValues({  
+      ...formValues,      
+      ..._initialState
+    });         
   }
 
-  componentDidMount() {
-    this.setState({
-      form: document.getElementById('form')
-    });
-  }
-
-  resetForm(_) {
-    this.state.form.reset();
-    this.setState({        
-        ...this.initialState
-    });     
-  }
-
-  setSelectedValue(e) {        
-    this.setState({
+  const setSelectedValue = e => {        
+    setFormValues({
+      ...formValues, 
       selectedValue: e.target.innerText,
       isSelectedValue: true
     });
   }
 
-  activeAdvances(_) {
-    this.setState(state => ({
-      advances: !state.advances,
-      someFeatureActive: `${!state.advances ? true : undefined}`
-    }));
+  const activeAdvances = _ => {
+    setFormValues({
+      ...formValues, 
+      advances: !formValues.advances,
+      someFeatureActive: `${!formValues.advances ? true : undefined}`
+    });
   }
 
-  activeAlerts(_) {    
-    this.setState(state => ({
-      alerts: !state.alerts,
-      someFeatureActive: `${state.alerts ? false : undefined}`
-    }));
+  const activeAlerts = _ => {    
+    setFormValues({
+      ...formValues, 
+      alerts: !formValues.alerts,
+      someFeatureActive: `${formValues.alerts ? false : undefined}`
+    });
   }
 
-  activeOtherCommunication(_) {
-    this.setState(state => ({
-      otherCommunication: !state.otherCommunication,
-      someFeatureActive: `${state.otherCommunication ? false : undefined}`
-    }));
+  const activeOtherCommunication = _ => {
+    setFormValues({
+      ...formValues, 
+      otherCommunication: !formValues.otherCommunication,
+      someFeatureActive: `${formValues.otherCommunication ? false : undefined}`
+    });
   }
 
-  onFirstNameChange(e) {
+  const onFirstNameChange = e => {
     let validFirstname = false;
     if(e.target.value.length > 0) validFirstname = true;
-    this.setState({
+    setFormValues({
+      ...formValues, 
       firstName: e.target.value,
       validFirstname
     });
   }
   
-  onLastnameChange(e) {
+  const onLastnameChange = e => {
     let validLastname = false;
     if(e.target.value.length > 0) validLastname = true;
-    this.setState({
+    setFormValues({
+      ...formValues, 
       lastname: e.target.value,
       validLastname
     });    
   }
   
-  onEmailChange(e) {
+  const onEmailChange = e => {
     let validEmail = false;
     if(e.target.value.length > 0 && e.target.value.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")) validEmail = true;
-    this.setState({
+    setFormValues({
+      ...formValues, 
       email: e.target.value,
       validEmail
     });
   }
   
-  onOrganizationChange(e) {    
-    this.setState({
+  const onOrganizationChange = e => {    
+    setFormValues({
+      ...formValues, 
       organization: e.target.value
     });  
   }
 
-  validate() {
-    const { validFirstname, validLastname, validEmail, advances, alerts, otherCommunication, isSelectedValue } = this.state;        
-
-    this.validateFirstInvalidSubmit(validFirstname, validLastname, validEmail, !(advances || alerts || otherCommunication), isSelectedValue);
+  const validate = _ => {
+    const { validFirstname, validLastname, validEmail, advances, alerts, otherCommunication, isSelectedValue } = formValues;        
+    
+    validateFirstInvalidSubmit(validFirstname, validLastname, validEmail, !(advances || alerts || otherCommunication), isSelectedValue);
     
     if(!validFirstname) return false;
     if(!validLastname) return false;
     if(!validEmail) return false;   
     if(!isSelectedValue) return false; 
     if(!(advances || alerts || otherCommunication)) {
-      this.setState({        
+      setFormValues({    
+        ...formValues,     
         someFeatureActive: false
       });
       return false
@@ -139,44 +128,46 @@ class Form extends React.Component {
     return true;
   }
 
-  validateFirstInvalidSubmit(validFirstname, validLastname, validEmail, activeFeatures, isSelectedValue) {
-    if(validFirstname === undefined) {
-      this.setState({
-        validFirstname: false
-      });
+  const validateFirstInvalidSubmit = (validFirstname, validLastname, validEmail, activeFeatures, isSelectedValue) => { 
+    const validFieldsObject = {};   
+    if(Object.is(validFirstname, undefined)) {
+      validFirstname = false;
+      validFieldsObject['validFirstname'] = validFirstname;
     };
 
-    if(validLastname === undefined) {
-      this.setState({
-        validLastname: false
-      });
+    if(Object.is(validLastname, undefined)) {
+      validLastname = false;      
+      validFieldsObject['validLastname'] = validLastname;
     };
 
-    if(validEmail === undefined) {
-      this.setState({
-        validEmail: false
-      });
+    if(Object.is(validEmail,undefined)) {
+      validEmail = false;      
+      validFieldsObject['validEmail'] = validEmail;
     };
 
-    if(activeFeatures === true) {
-      this.setState({
-        someFeatureActive: false
-      });
+    if(Object.is(activeFeatures, true)) {
+      activeFeatures = false;
+      validFieldsObject['someFeatureActive'] = activeFeatures;
     };    
 
-    if(isSelectedValue === undefined) {
-      this.setState({
-        isSelectedValue: false
-      });
+    if(Object.is(isSelectedValue, undefined)) {
+      isSelectedValue = false;
+      validFieldsObject['isSelectedValue'] = isSelectedValue;
     };    
+
+    setFormValues({
+      ...formValues,
+      ...validFieldsObject
+    });
+
   }
 
-  async submit(e) {
+  const submit = async e => {
     e.preventDefault();     
     const path = '/registration-complete';   
-    if(this.validate()){
+    if(validate()){
       try {
-        const { firstName, lastname, email, organization, advances, alerts, otherCommunication, selectedValue } = this.state;      
+        const { firstName, lastname, email, organization, advances, alerts, otherCommunication, selectedValue } = formValues;      
         const { message, reason } = await signUp({ 
           firstName, 
           lastname, 
@@ -187,48 +178,46 @@ class Form extends React.Component {
           otherCommunication, 
           selectedValue 
         });            
-        return this.props.history.push(path, { message, reason });      
+        return props.history.push(path, { message, reason });      
       } catch({ message, reason }) {
-        this.props.history.push(path, { message, reason });
+        props.history.push(path, { message, reason });
       }
     }        
   }
-
-  render() {         
+   
     return (
       <FormContainer> 
-        <form id='form' onSubmit={this.submit}>
+        <form id='form' onSubmit={submit}>
           <Title>Sign up for email updates</Title>
           <Paragraph>*Indicates Required Field</Paragraph>
           <InputSection 
-            onFirstNameChange={this.onFirstNameChange} 
-            validFirstname={this.state.validFirstname} 
-            onLastnameChange={this.onLastnameChange}
-            validLastname={this.state.validLastname}
-            onEmailChange={this.onEmailChange}
-            validEmail={this.state.validEmail}
-            onOrganizationChange={this.onOrganizationChange}
-            setSelectedValue={this.setSelectedValue}
-            selectedValue={this.state.selectedValue}
-            isSelectedValue={this.state.isSelectedValue}
+            onFirstNameChange={onFirstNameChange} 
+            validFirstname={formValues.validFirstname} 
+            onLastnameChange={onLastnameChange}
+            validLastname={formValues.validLastname}
+            onEmailChange={onEmailChange}
+            validEmail={formValues.validEmail}
+            onOrganizationChange={onOrganizationChange}
+            setSelectedValue={setSelectedValue}
+            selectedValue={formValues.selectedValue}
+            isSelectedValue={formValues.isSelectedValue}
           />
           <OptionsSection 
-            activeAdvances={this.activeAdvances} 
-            advances={this.state.advances} 
-            activeAlerts={this.activeAlerts}
-            alerts={this.state.alerts}
-            activeOtherCommunication={this.activeOtherCommunication}
-            otherCommunication={this.state.otherCommunication}
-            someFeatureActive={this.state.someFeatureActive}
+            activeAdvances={activeAdvances} 
+            advances={formValues.advances} 
+            activeAlerts={activeAlerts}
+            alerts={formValues.alerts}
+            activeOtherCommunication={activeOtherCommunication}
+            otherCommunication={formValues.otherCommunication}
+            someFeatureActive={formValues.someFeatureActive}
           />
-          <ResetButton type='button' onClick={this.resetForm}>RESET</ResetButton>
+          <ResetButton type='button' onClick={resetForm}>RESET</ResetButton>
           <ButtonsContainer>
             <SubmitButton type='submit'>SUBMIT</SubmitButton>
           </ButtonsContainer>
         </form>
       </FormContainer>
-    )
-  }
-}
+    );
+};
 
 export default withRouter(Form);

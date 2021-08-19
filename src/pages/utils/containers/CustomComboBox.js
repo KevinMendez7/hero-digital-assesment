@@ -1,53 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import OutsideUtil from './OutsideUtil';
 import { Span, SelectedItem, ComboBoxContainer, OptionsContainer, ItemContainer, Arrow, ItemText } from '../components/styles/CustomComboBox.styles';
 
-class CustomComboBox extends React.PureComponent {
+const CustomComboBox = ({ select, selected, children, valid }) => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            expanded: false
-        };     
-        this.expandList = this.expandList.bind(this);
-        this.closeList = this.closeList.bind(this);
-    }
-    expandList() {        
-        this.setState(state => ({
-            expanded : !state.expanded
-        }));
+    const [ expanded, setExpanded ] = useState(false);
+    
+    const expandList = _ => {        
+        setExpanded(!expanded);
     }
 
-    closeList() { 
-        if(this.state.expanded) {
-            this.setState({
-                expanded : false,            
-            });
-        }       
+    const closeList = _ => { 
+        setExpanded(false);
     }
+       
+    return (
+        <OutsideUtil onClickedOutside={closeList}>
+            <Span onClick={expandList} onBlur={closeList} active={expanded}>                    
+                    <SelectedItem active={expanded} valid={valid}>
+                        <>
+                            <ItemText>{selected}</ItemText>                                
+                            <Arrow active={expanded ? 1 : 0} />
+                        </>
+                    </SelectedItem>                                            
+                <ComboBoxContainer expanded={expanded}>            
+                    <OptionsContainer>
+                        {
+                            React.Children.map(children, child => <ItemContainer onClick={select}>{child}</ItemContainer>)
+                        }
+                    </OptionsContainer>                    
+                </ComboBoxContainer>
+            </Span>
+        </OutsideUtil>
+    );
 
-    render() {          
-        const { state: { expanded }, props: { select, selected, children, valid } } = this;        
-        return (
-            <OutsideUtil onClickedOutside={this.closeList}>
-                <Span onClick={this.expandList} onBlur={this.closeList} active={expanded}>                    
-                        <SelectedItem active={expanded} valid={valid}>
-                            <>
-                                <ItemText>{selected}</ItemText>                                
-                                <Arrow active={expanded ? 1 : 0} />
-                            </>
-                        </SelectedItem>                                            
-                    <ComboBoxContainer expanded={expanded}>            
-                        <OptionsContainer>
-                            {
-                                React.Children.map(children, child => <ItemContainer onClick={select}>{child}</ItemContainer>)
-                            }
-                        </OptionsContainer>                    
-                    </ComboBoxContainer>
-                </Span>
-            </OutsideUtil>
-        );
-    }
 }
 
 export default CustomComboBox;
