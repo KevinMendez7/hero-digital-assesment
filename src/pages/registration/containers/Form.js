@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { signUp } from '../../../utils/api';
 import InputSection from '../../registration/components/InputSection';
@@ -25,88 +25,81 @@ const Form = props => {
       isSelectedValue: undefined
   };
 
-  const [ formValues, setFormValues ] = useState({ ..._initialState, form : null }); 
-  
-  useEffect(() => {    
-    setFormValues({...formValues, form: document.getElementById('form') });    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);  
+  const [ formValues, setFormValues ] = useState({ ..._initialState });   
 
-  const resetForm = _ => {
-    formValues.form.reset();    
-    setFormValues({  
-      ...formValues,      
-      ..._initialState
+  const resetForm = () => {        
+    setFormValues({           
+      ..._initialState      
     });         
   }
 
   const setSelectedValue = e => {        
-    setFormValues({
-      ...formValues, 
+    setFormValues(prevFormValues => ({  
+      ...prevFormValues, 
       selectedValue: e.target.innerText,
       isSelectedValue: true
-    });
+    }));
   }
 
   const activeAdvances = _ => {
-    setFormValues({
-      ...formValues, 
-      advances: !formValues.advances,
-      someFeatureActive: `${!formValues.advances ? true : undefined}`
-    });
+    setFormValues(prevFormValues => ({  
+      ...prevFormValues, 
+      advances: !prevFormValues.advances,
+      someFeatureActive: `${!prevFormValues.advances ? true : undefined}`
+    }));
   }
 
   const activeAlerts = _ => {    
-    setFormValues({
-      ...formValues, 
+    setFormValues(prevFormValues => ({  
+      ...prevFormValues, 
       alerts: !formValues.alerts,
       someFeatureActive: `${formValues.alerts ? false : undefined}`
-    });
+    }));
   }
 
   const activeOtherCommunication = _ => {
-    setFormValues({
-      ...formValues, 
+    setFormValues(prevFormValues => ({  
+      ...prevFormValues, 
       otherCommunication: !formValues.otherCommunication,
       someFeatureActive: `${formValues.otherCommunication ? false : undefined}`
-    });
+    }));
   }
 
   const onFirstNameChange = e => {
     let validFirstname = false;
     if(e.target.value.length > 0) validFirstname = true;
-    setFormValues({
-      ...formValues, 
+    setFormValues(prevFormValues => ({  
+      ...prevFormValues, 
       firstName: e.target.value,
       validFirstname
-    });
+    }));
   }
   
   const onLastnameChange = e => {
     let validLastname = false;
     if(e.target.value.length > 0) validLastname = true;
-    setFormValues({
-      ...formValues, 
+    setFormValues(prevFormValues => ({  
+      ...prevFormValues,
       lastname: e.target.value,
       validLastname
-    });    
+    }));    
   }
   
   const onEmailChange = e => {
     let validEmail = false;
     if(e.target.value.length > 0 && e.target.value.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")) validEmail = true;
-    setFormValues({
-      ...formValues, 
+    setFormValues(prevFormValues => ({  
+      ...prevFormValues,
       email: e.target.value,
       validEmail
-    });
+    }));
   }
   
   const onOrganizationChange = e => {    
-    setFormValues({
-      ...formValues, 
+    setFormValues(prevFormValues => ({  
+      ...prevFormValues,
       organization: e.target.value
-    });  
+    }));  
   }
 
   const validate = _ => {
@@ -118,13 +111,7 @@ const Form = props => {
     if(!validLastname) return false;
     if(!validEmail) return false;   
     if(!isSelectedValue) return false; 
-    if(!(advances || alerts || otherCommunication)) {
-      setFormValues({    
-        ...formValues,     
-        someFeatureActive: false
-      });
-      return false
-    };
+    if(!(advances || alerts || otherCommunication)) return false;
     return true;
   }
 
@@ -155,10 +142,10 @@ const Form = props => {
       validFieldsObject['isSelectedValue'] = isSelectedValue;
     };    
 
-    setFormValues({
-      ...formValues,
+    setFormValues(prevFormValues => ({  
+      ...prevFormValues,
       ...validFieldsObject
-    });
+    }));
 
   }
 
@@ -191,12 +178,16 @@ const Form = props => {
           <Title>Sign up for email updates</Title>
           <Paragraph>*Indicates Required Field</Paragraph>
           <InputSection 
+            firstName={formValues.firstName}
             onFirstNameChange={onFirstNameChange} 
             validFirstname={formValues.validFirstname} 
+            lastname={formValues.lastname}
             onLastnameChange={onLastnameChange}
             validLastname={formValues.validLastname}
+            email={formValues.email}
             onEmailChange={onEmailChange}
             validEmail={formValues.validEmail}
+            organization={formValues.organization}
             onOrganizationChange={onOrganizationChange}
             setSelectedValue={setSelectedValue}
             selectedValue={formValues.selectedValue}

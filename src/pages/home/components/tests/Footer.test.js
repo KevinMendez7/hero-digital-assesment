@@ -26,9 +26,9 @@ describe('Footer', () => {
         expect(p).toHaveLength(2);
     });
 
-    it('Should has text "Registration page . created for a HERO DIGITAL assesment." in Paragraph at position 1', () => {
+    it('Should has text "Registration page . created for a HERO DIGITAL assessment." in Paragraph at position 1', () => {
         const text = component.find(Paragraph).at(0).text();
-        expect(text).toEqual('Registration page . created for a HERO DIGITAL assesment.');
+        expect(text).toEqual('Registration page . created for a HERO DIGITAL assessment.');
     });
 
     it('Should has text "HERO DIGITAL . Kevin Mendez © 2021." in Paragraph at position 1', () => {

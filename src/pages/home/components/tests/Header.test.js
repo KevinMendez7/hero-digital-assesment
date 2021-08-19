@@ -34,9 +34,9 @@ describe('Header', () => {
         expect(div).toHaveLength(1);
     });
 
-    it('Should has  text "HERO ASSESMENT" in Paragraph', () => {
+    it('Should has  text "HERO ASSESSMENT" in Paragraph', () => {
         const title = component.find(Title).text();        
-        expect(title).toEqual("HERO ASSESMENT");
+        expect(title).toEqual("HERO ASSESSMENT");
     });
 
     it('Should has  text "Welcome" in Paragraph', () => {
