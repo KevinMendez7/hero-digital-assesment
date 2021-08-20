@@ -1,4 +1,4 @@
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import 'jest-styled-components';
 import { specificSize } from 'utils/devicesSizeValidation';
 import { ItemLabel } from 'pages/utils/components/styles/CustomComboBox.styles';
