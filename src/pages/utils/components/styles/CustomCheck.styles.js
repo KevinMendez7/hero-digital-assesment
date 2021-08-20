@@ -7,6 +7,7 @@ const skyBlueColor = 'rgb(80 190 188 / 33%)';
 const whiteColor = 'rgb(255 255 255)';
 
 export const CheckContainer = styled.div`
+    cursor: pointer;    
     border: ${props => props.isActive ? purpleColor : skyBlueColor} 4px solid;
     border-radius: 8px;
     background: ${props => props.isActive ? purpleColor : whiteColor};

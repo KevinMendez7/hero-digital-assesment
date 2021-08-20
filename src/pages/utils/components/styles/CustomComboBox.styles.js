@@ -8,6 +8,7 @@ const greenColor = 'rgb(80 190 188 / 33%)';
 const softPinkColor = 'rgb(248 231 231)';
 
 export const Span = styled.span`    
+    cursor: pointer;
     width: 55%;
     height: 35px;
     display: inherit;    
